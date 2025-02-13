@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+// import "h8k-components";
+import FeedbackSystem from "./components/CodeReviewFeedback";
 
-function App() {
+const title = "Code Review Feedback";
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <h8k-navbar header={title}></h8k-navbar> */}
+      <FeedbackSystem />
     </div>
   );
-}
+};
 
 export default App;
