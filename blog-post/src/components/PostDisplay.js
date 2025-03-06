@@ -1,13 +1,15 @@
 import React from "react";
 
-function PostDisplay() {
+function PostDisplay({ posts = [], onPostDeleteButtonClick }) {
     return (
         <div data-testid="posts-container" className="flex wrap gap-10">
-            <div className="post-box">
-                <h3>{"Title"}</h3>
-                <p>{"Description"}</p>
-                <button>Delete</button>
-            </div>
+            {posts.length > 0 && posts.map((post) => (
+                <div className="post-box" key={post.id}>
+                    <h3>{ post.title }</h3>
+                    <p>{ post.description }</p>
+                    <button onClick={() => onPostDeleteButtonClick(post.id)}>Delete</button>
+                </div>
+            ))}
         </div>
     );
 }
