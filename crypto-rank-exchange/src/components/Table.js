@@ -1,7 +1,15 @@
 import React from "react";
 import { cryptocurrencyList } from "../cryptocurrency-list";
 
-function Table() {
+function Table({ exchangeAmount }) {
+  const calculateCoinQuantity  = (exchangeRate) => {
+    if (isNaN(exchangeAmount)) {
+      return "n/a";
+    }
+
+    return (exchangeAmount * exchangeRate).toFixed(8)
+  }
+
   return (
     <div className="card card-text mt-10 mx-4">
       <table className="mb-0">
@@ -13,11 +21,13 @@ function Table() {
           </tr>
         </thead>
         <tbody data-testid="exchange-data">
-          <tr>
-            <td>Currency Name</td>
-            <td>1 USD = Currency Rate Currency Code</td>
-            <td>n/a</td>
+        {cryptocurrencyList.map((cryptocurrency) => (
+          <tr key={cryptocurrency.code}>
+            <td>{ cryptocurrency.name }</td>
+            <td>1 USD = {cryptocurrency.rate}</td>
+            <td>{calculateCoinQuantity(cryptocurrency.rate)}</td>
           </tr>
+        ))}
         </tbody>
       </table>
     </div>
