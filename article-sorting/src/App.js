@@ -3,15 +3,23 @@ import "h8k-components";
 import Articles from "./components/Articles";
 
 import "./App.css";
+import {useState} from "react";
+
+const sortArticlesByMostUpvoted = (articlesToSort) => articlesToSort.sort((a, b) => b.upvotes - a.upvotes);
 
 function App({ articles }) {
+  const [sortedArticles, setSortedArticles] = useState(() => sortArticlesByMostUpvoted([...articles]));
+
   const handleMostUpvoted = () => {
-    // Logic for most upvoted articles
+    const sortedByUpvotes = sortArticlesByMostUpvoted(sortedArticles);
+    setSortedArticles([...sortedByUpvotes]);
   };
 
   const handleMostRecent = () => {
-    // Logic for most recent articles
+    const sortedByDate = sortedArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+    setSortedArticles([...sortedByDate]);
   };
+
   return (
     <>
       <h8k-navbar header="Sorting Articles"></h8k-navbar>
@@ -35,7 +43,7 @@ function App({ articles }) {
             Most Recent
           </button>
         </div>
-        <Articles articles={articles} />
+        <Articles articles={ sortedArticles } />
       </div>
     </>
   );

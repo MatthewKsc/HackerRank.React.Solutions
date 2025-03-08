@@ -12,11 +12,13 @@ function Articles({ articles = [] }) {
           </tr>
         </thead>
         <tbody>
-          <tr data-testid="article" key="article-index">
-            <td data-testid="article-title">Article 1 title</td>
-            <td data-testid="article-upvotes">Article 1 upvotes</td>
-            <td data-testid="article-date">Article 1 date</td>
-          </tr>
+        {articles.map((article, index) => (
+        <tr data-testid="article" key={index}>
+          <td data-testid="article-title">{article.title}</td>
+          <td data-testid="article-upvotes">{article.upvotes}</td>
+          <td data-testid="article-date">{article.date}</td>
+        </tr>
+        ))}
         </tbody>
       </table>
     </div>
