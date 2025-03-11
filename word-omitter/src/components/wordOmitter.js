@@ -14,13 +14,16 @@ function WordOmitter() {
         setOmitWords(!omitWords);
     };
 
-    const clearFields = () => {
-        // TODO: Add your changes here
-    };
+    const clearFields = () => setInputText("");
 
     const getProcessedText = () => {
-        // TODO: Add your changes here
-        return "";
+        if (!omitWords) {
+            return inputText;
+        }
+
+        return inputText.split(" ")
+            .filter(word => !OMITTED_WORDS.includes(word))
+            .join(" ");
     };
 
     return (
